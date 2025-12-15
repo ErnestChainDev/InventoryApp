@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Management System</title>
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="container header-content">
+    <div class="logo">
+      <i class="fas fa-boxes-stacked"></i>
+      Inventory System
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="active" data-section="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="#" data-section="products"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="#" data-section="suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
+      <li><a href="#" data-section="orders"><i class="fas fa-receipt"></i> Orders</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="container">
+
+<!-- ===== DASHBOARD ===== -->
+<section id="dashboard" class="content-section active">
+  <h2 class="section-title">Inventory Dashboard</h2>
+
+  <div class="dashboard-stats">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-box"></i></div>
+      <div>
+        <h3 id="products-count">--</h3>
+        <p>Total Products</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-truck"></i></div>
+      <div>
+        <h3 id="suppliers-count">--</h3>
+        <p>Total Suppliers</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-receipt"></i></div>
+      <div>
+        <h3 id="orders-count">--</h3>
+        <p>Total Orders</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-warehouse"></i></div>
+      <div>
+        <h3 id="low-stock">--</h3>
+        <p>Low Stock Items</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section id="products" class="content-section">
+  <div class="section-header">
+    <h2 class="section-title">Product Management</h2>
+    <button class="btn btn-primary" id="addProductBtn">
+      <i class="fas fa-plus"></i> Add Product
+    </button>
+  </div>
+
+  <div class="data-table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="products-table"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== SUPPLIERS ===== -->
+<section id="suppliers" class="content-section">
+  <div class="section-header">
+    <h2 class="section-title">Supplier Management</h2>
+    <button class="btn btn-primary" id="addSupplierBtn">
+      <i class="fas fa-plus"></i> Add Supplier
+    </button>
+  </div>
+
+  <div class="data-table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="suppliers-table"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== ORDERS ===== -->
+<section id="orders" class="content-section">
+  <div class="section-header">
+    <h2 class="section-title">Order Management</h2>
+    <button class="btn btn-primary" id="addOrderBtn">
+      <i class="fas fa-plus"></i> Create Order
+    </button>
+  </div>
+
+  <div class="data-table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Supplier</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="orders-table"></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container footer-content">
+    <p>© 2025 Inventory Management System</p>
+  </div>
+</footer>
+
+<!-- ================= MODALS ================= -->
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="productModalTitle">Add Product</h3>
+      <button class="close-modal">&times;</button>
+    </div>
+
+    <form id="productForm" class="modal-body">
+      <input type="hidden" name="id">
+
+      <label>SKU *</label>
+      <input type="text" name="sku" required>
+
+      <label>Name *</label>
+      <input type="text" name="name" required>
+
+      <label>Category</label>
+      <input type="text" name="category">
+
+      <label>Price *</label>
+      <input type="number" name="price" step="0.01" required>
+
+      <label>Stock *</label>
+      <input type="number" name="stock" required>
+    </form>
+
+    <div class="modal-footer">
+      <button class="btn">Cancel</button>
+      <button class="btn btn-primary" id="saveProductBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPLIER MODAL -->
+<div class="modal" id="supplierModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Add Supplier</h3>
+      <button class="close-modal">&times;</button>
+    </div>
+
+    <form id="supplierForm" class="modal-body">
+      <input type="hidden" name="id">
+
+      <label>Name *</label>
+      <input type="text" name="name" required>
+
+      <label>Contact *</label>
+      <input type="text" name="contact" required>
+
+      <label>Email</label>
+      <input type="email" name="email">
+
+      <label>Phone</label>
+      <input type="tel" name="phone">
+    </form>
+
+    <div class="modal-footer">
+      <button class="btn">Cancel</button>
+      <button class="btn btn-primary" id="saveSupplierBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Create Order</h3>
+      <button class="close-modal">&times;</button>
+    </div>
+
+    <form id="orderForm" class="modal-body">
+      <input type="hidden" name="id">
+
+      <label>Supplier *</label>
+      <select name="supplierId" required></select>
+
+      <label>Status</label>
+      <select name="status">
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="shipped">Shipped</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+
+      <label>Notes</label>
+      <textarea name="notes"></textarea>
+    </form>
+
+    <div class="modal-footer">
+      <button class="btn">Cancel</button>
+      <button class="btn btn-primary" id="saveOrderBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
