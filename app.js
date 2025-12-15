@@ -3,7 +3,7 @@
 // Compatible with your Inventory Backend API
 // ================================
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://inventory-backend-pi-tawny.vercel.app/api';
 
 // ================================
 // GENERIC FETCH HELPER
